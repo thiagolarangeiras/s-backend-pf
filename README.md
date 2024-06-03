@@ -57,5 +57,131 @@ Funcionalidades e ações que cada papel pode fazer ou receber
 * cadastrar paciente
 * alterar dados da conta de médico e paciente conforme a necessidade
 
+
+Se o medicamento não tiver fim definido ou não acabou ainda marcar como desativado para sinalizar como para
+
 # 3 Tecnologias
-# Detalhamento da API
+
+# 4 Detalhamento da API
+## 4.1 Controle de medicamentos para Paciente
+Endpoints:
+* [POST] Inserir novo medicamento
+* [POST] Tomou o remedio
+* [GET] Listar todos os medicamentos
+* [GET] Listar um medicamentos
+* [PATCH] Alterar Dados de um medicamento (data, hora, quantidade)
+* [PATCH] Marcar que parou de tomar
+* [DELETE] Remover um medicamento (se ele já tomou algum ainda fica salvo, deleleta ou marca como cancelado oq poder)
+
+### 4.1.1 Requisição: Inserir medicamento (Paciente)
+    [POST]/paciente/remedio
+```json
+{
+}
+```
+
+### 4.1.3 Requisição: Tomar medicamento medicamento
+[POST]/paciente/medicamento/{id-medicamento}/tomar
+```json
+{
+}
+```
+
+### 4.1.3 Requisição: Ler medicamentos (paciente)
+    [GET]/paciente/medicamento?   
+Parametros:
+```
+page int
+count int
+sort list<string>
+filter map<string, string>
+```
+### 4.1.5 Requisição: Ler um medicamento (paciente)
+    [GET]/paciente/medicamento/{id-medicamento}
+
+### 4.1.7 Requisição: Alterar um medicamento (paciente)
+    [PATCH]/paciente/medicamento/{id-medicamento}
+```json
+
+```
+
+### 4.1.9 Requisição: Parar um medicamento (paciente)
+    [PATCH]/paciente/medicamento/{id-medicamento}/parar
+```json
+
+```
+
+### 4.1.11 Requisição: Remover um medicamento (paciente)
+    [PATCH]/paciente/medicamento/{id-medicamento}
+```json
+
+```
+
+## 4.2 Controle de medicamentos para médico
+Endpoints:
+* [POST] Inserir novo medicamento
+* [GET] Listar todos os medicamentos
+* [GET] Listar um medicamentos
+* [PATCH] Alterar Dados de um medicamento (data, hora, quantidade)
+* [PATCH] Marcar que parou de tomar
+* [DELETE] Remover um medicamento (se ele já tomou algum ainda fica salvo, deleleta ou marca como cancelado oq poder)
+
+### 4.2.1 Requisição: Inserir medicamento (médico)
+[POST]/medico/{id-paciente}/medicamento
+```json
+{
+}
+```
+
+### 4.2.2 Requisição: Ler medicamentos (médico)
+    [GET]/medico{id-paciente}/medicamento?   
+Parametros:
+```
+page int
+count int
+sort list<string> //nome campo
+filter map<string, string> //nome campo : valor
+```
+
+### 4.2.3 Requisição: Ler um medicamento (médico)
+    [GET]/medico/{id-paciente}/medicamento/{id-medicamento}
+
+### 4.2.4 Requisição: Alterar um medicamento (médico)
+    [PATCH]/medico/{id-paciente}/medicamento/{id-medicamento}
+```json
+```
+
+### 4.2.5 Requisição: Parar um medicamento (médico)
+    [PATCH]/medico/{id-paciente}/medicamento/{id-medicamento}/parar
+```json
+
+```
+
+### 4.2.5 Requisição: Remover um medicamento (médico)
+    [PATCH]/medico/{id-paciente}/medicamento/{id-medicamento}
+```json
+
+```
+
+## 4.2 Controle de Consultas para Paciente
+Endpoints:
+* [GET] Listar médicos
+* [GET] Listar um médico
+* [GET] Listar vagas do médico
+* [GET] Listar vagas de todos os médicos
+* [POST] Agendar consulta
+* [GET] Listar consultas
+* [GET] Listar uma consulta
+* [PATCH] Alterar data/horario da consulta
+* [DELETE] Cancelar consulta
+
+### 4.2.1 Requisição: Listar Medicos
+
+### 4.2.2
+### 4.2.3
+### 4.2.4
+### 4.2.5
+### 4.2.6
+### 4.2.7
+### 4.2.8
+### 4.2.9
