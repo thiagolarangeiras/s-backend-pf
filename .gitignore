@@ -18,8 +18,7 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-# Alterado para salvar as configs do intelij
-# .idea
+.idea
 *.iws
 *.iml
 *.ipr

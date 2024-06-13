@@ -1,4 +1,4 @@
-package com.salusControlis;
+package com.controlis.salus;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
