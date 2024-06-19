@@ -71,6 +71,7 @@ public class SecurityConfig {
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/auth/*").permitAll()
+                        .requestMatchers("/ajuda").permitAll()
                         .anyRequest().authenticated()
                         //.requestMatchers(HttpMethod.GET, "/*").authenticated()
                         //.requestMatchers(HttpMethod.POST, "/*").authenticated()
