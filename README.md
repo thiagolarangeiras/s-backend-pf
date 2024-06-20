@@ -63,32 +63,26 @@ Se o medicamento não tiver fim definido ou não acabou ainda marcar como desati
 # 3 Tecnologias
 
 # 4 Detalhamento da API
-## 4.1 Controle de medicamentos para Paciente
-Endpoints:
+
+
+## 4.1 Controle de cadastro de medicamentos
 * [POST] Inserir novo medicamento
-* [POST] Tomou o remedio
 * [GET] Listar todos os medicamentos
 * [GET] Listar um medicamentos
-* [PATCH] Alterar Dados de um medicamento (data, hora, quantidade)
-* [PATCH] Marcar que parou de tomar
-* [DELETE] Remover um medicamento (se ele já tomou algum ainda fica salvo, deleleta ou marca como cancelado oq poder)
+* [PATCH] Alterar Dados de um medicamento (nome)
+* [DELETE] Remover um medicamento
+
 
 ### 4.1.1 Requisição: Inserir medicamento (Paciente)
-    [POST]/paciente/remedio
+    [POST]/medicamento
 ```json
 {
+    "nome": "Dipirona Monohidratada"
 }
 ```
 
-### 4.1.2 Requisição: Tomar medicamento medicamento
-[POST]/paciente/medicamento/{id-medicamento}/tomar
-```json
-{
-}
-```
-
-### 4.1.3 Requisição: Ler medicamentos (paciente)
-    [GET]/paciente/medicamento?   
+### 4.1.2 Requisição: Ler medicamentos
+    [GET]/medicamento  
 Parametros:
 ```
 page int
@@ -96,210 +90,44 @@ count int
 sort list<string>
 filter map<string, string>
 ```
-### 4.1.4 Requisição: Ler um medicamento (paciente)
-    [GET]/paciente/medicamento/{id-medicamento}
 
-### 4.1.5 Requisição: Alterar um medicamento (paciente)
-    [PATCH]/paciente/medicamento/{id-medicamento}
-```json
+### 4.1.3 Requisição: Ler um medicamento
+    [GET]/medicamento/{id}
 
-```
-
-### 4.1.6 Requisição: Parar um medicamento (paciente)
-    [PATCH]/paciente/medicamento/{id-medicamento}/parar
-```json
-
-```
-
-### 4.1.7 Requisição: Remover um medicamento (paciente)
-    [PATCH]/paciente/medicamento/{id-medicamento}
-```json
-
-```
-
-## 4.2 Controle de medicamentos para médico
-Endpoints:
-* [POST] Inserir novo medicamento
-* [GET] Listar todos os medicamentos
-* [GET] Listar um medicamentos
-* [PATCH] Alterar Dados de um medicamento (data, hora, quantidade)
-* [PATCH] Marcar que parou de tomar
-* [DELETE] Remover um medicamento (se ele já tomou algum ainda fica salvo, deleleta ou marca como cancelado oq poder)
-
-### 4.2.1 Requisição: Inserir medicamento (médico)
-[POST]/medico/{id-paciente}/medicamento
+### 4.1.4 Requisição: Alterar um medicamento (paciente)
+    [PATCH]/medicamento/{id}
 ```json
 {
+    "nome": "Dipirona Sódica"
 }
 ```
 
-### 4.2.2 Requisição: Ler medicamentos (médico)
-    [GET]/medico{id-paciente}/medicamento?   
-Parametros:
-```
-page int
-count int
-sort list<string> //nome campo
-filter map<string, string> //nome campo : valor
-```
+### 4.1.5 Requisição: Remover um medicamento
+    [DELETE]/medicamento/{id}
 
-### 4.2.3 Requisição: Ler um medicamento (médico)
-    [GET]/medico/{id-paciente}/medicamento/{id-medicamento}
-
-### 4.2.4 Requisição: Alterar um medicamento (médico)
-    [PATCH]/medico/{id-paciente}/medicamento/{id-medicamento}
-```json
-```
-
-### 4.2.5 Requisição: Parar um medicamento (médico)
-    [PATCH]/medico/{id-paciente}/medicamento/{id-medicamento}/parar
-```json
-
-```
-
-### 4.2.5 Requisição: Remover um medicamento (médico)
-    [PATCH]/medico/{id-paciente}/medicamento/{id-medicamento}
-```json
-
-```
-
-## 4.3 Controle de Consultas para Paciente
+## 4.2 Controle de cadastro de médicos e pacientes
 Endpoints:
+* [POST] Inserir médico ou paciente
 * [GET] Listar médicos
+* [GET] Listar pacientes
 * [GET] Listar um médico
-* [GET] Listar vagas do médico
-* [GET] Listar vagas de todos os médicos
-* [POST] Agendar consulta
-* [GET] Listar consultas
-* [GET] Listar uma consulta
-* [POST] Confirmar consulta (medico pediu para confirmar ultima chance de cancelar, não é apenas um lembrete)
-* [POST] Confirmar alteracao de consulta (medico quer alterar data/hora ou cancelou)
-* [PATCH] Alterar data/horario da consulta
-* [DELETE] Cancelar consulta
+* [GET] Listar um paciente
+* [PUT] Alterar médico ou paciente
+* [DELETE] Remover médico ou paciente
 
-### 4.3.1 Requisição: Listar médicos 
-    [GET]/paciente/medico   
-parametros:
-```
-page int
-count int
-sort list<string> //nome campo
-filter map<string, string> //nome campo : valor
-```
-
-### 4.3.2 Requisição: Listar um médico
-    [GET]/paciente/medico/{id-medico}
-### 4.3.3 Requisição: Listar vagas do médico
-    [GET]/paciente/medico/{id-medico}/vagas
-parametros:
-```
-page int
-count int
-sort list<string> //nome campo
-filter map<string, string> //nome campo : valor
-```
-### 4.3.4 Requisição: Listar vagas de todos os médicos
-    [GET]/paciente/medico/vagas
-parametros:
-```
-page int
-count int
-sort list<string> //nome campo
-filter map<string, string> //nome campo : valor
-```
-### 4.3.5 Requisição: Agendar consulta
-    [POST]/paciente/medico/{id-medico}
+### 4.2.1 Requisição: Inserir médico ou paciente
+    [POST]/signin
 ```json
 {
-
+    "username": "ramon.venson",
+    "email": "ramon.venson@satc.edu.br",
+    "password": "godot_java",
+    "fullName": "Ramon Venson",
+    "birthDate": "1994-12-25"
+    "type": 0
 }
 ```
-### 4.3.6 Requisição: Listar consultas
-    [GET]/paciente/consulta
-parametros:
-```
-page int
-count int
-sort list<string> //nome campo
-filter map<string, string> //nome campo : valor
-```
-
-### 4.3.7 Requisição: Listar uma consulta
-    [GET]/paciente/consulta/{id-consulta}
-
-### 4.3.8 Requisição: Confirmar consulta
-    [POST]/paciente/consulta/{id-consulta}/confirmar
-
-### 4.3.9 Requisição: Confirmar alteracao de consulta
-    [POST]/paciente/consulta/{id-consulta}/confirmar/alteracao
-
-### 4.3.10 Requisição: Alterar data/horario da consulta
-    [PATCH]/paciente/consulta/{id-consulta}
-```json
-{
-
-}
-```
-
-### 4.3.9 Requisição: Cancelar consulta
-    [DELETE]/paciente/consulta/{id-consulta}
-
-
-
-## 4.4 Controle de Consultas para Médico
-Endpoints:
-* [GET] Listar consultas
-* [GET] Listar uma consulta
-* [POST] Confirmar consulta (paciente pediu para agendar)
-* [POST] Confirmar alteracao de consulta (paciente pediu para alterar)
-* [PATCH] Alterar data/horario da consulta
-* [DELETE] Cancelar consulta
-
-### 4.4.1 Requisição:  Listar consultas
-    [GET]/medico/consulta
-parametros
-```
-page int
-count int
-sort list<string> //nome campo
-filter map<string, string> //nome campo : valor
-```
-
-### 4.4.2 Requisição:  Listar uma consulta
-    [GET]/medico/consulta/{id-consulta}
-
-### 4.4.3 Requisição:  Confirmar consulta (paciente pediu para agendar)
-    [POST]/medico/consulta/{id-consulta}/confirmar
-
-### 4.4.4 Requisição:  Confirmar alteracao de consulta (paciente pediu para alterar)
-    [POST]/medico/consulta/{id-consulta}//confirmar/alteracao
-
-### 4.4.5 Requisição: Alterar data/horario da consulta
-    [PATCH]/medico/consulta/{id-consulta}
-```json
-{
-
-}
-```
-### 4.4.6 Requisição:  Cancelar consulta
-    [DELETE]/medico/consulta/{id-consulta}
-
-
-## 4.5 Controle de cadastro de médicos
-Endpoints:
-* [POST] Inserir médico
-* [GET] Listar médicos 
-* [GET] Listar um médico
-* [PUT] Alterar médico
-* [DELETE] Remover médico
-### 4.5.1 Requisição: Inserir médico
-    [POST]/medico
-```json
-{
-
-}
-```
-### 4.5.1 Requisição: Listar médicos 
+### 4.2.2 Requisição: Listar médicos 
     [GET]/medico
 parametros
 ```
@@ -308,37 +136,8 @@ count int
 sort list<string> //nome campo
 filter map<string, string> //nome campo : valor
 ```
-### 4.5.1 Requisição: Listar um médico
-    [GET]/medico/{id-medico}
-### 4.5.1 Requisição: Alterar médico
-    [PUT]/medico/{id-medico}
-```json
-{
-    
-}
-```
 
-### 4.5.1 Requisição: Remover médico 
-    [DELETE]/medico/{id-medico}
-    
-
-## 4.6 Controle de cadastro de paciente
-Endpoints:
-* [POST] Inserir paciente
-* [GET] Listar pacientes 
-* [GET] Listar um paciente
-* [PUT] Alterar paciente
-* [DELETE] Remover paciente
-
-### 4.6.1 Requisição: Inserir paciente
-    [POST]/medico/consulta/{id-consulta}
-```json
-{
-
-}
-```
-
-### 4.6.1 Requisição: Listar pacientes 
+### 4.2.3 Requisição: Listar pacientes 
     [GET]/paciente
 parametros
 ```
@@ -348,16 +147,142 @@ sort list<string> //nome campo
 filter map<string, string> //nome campo : valor
 ```
 
-### 4.6.1 Requisição: Listar um paciente
-    [GET]/paciente/{id-paciente}
-
-### 4.6.1 Requisição: Alterar paciente
-    [PUT]/paciente/{id-paciente}
+### 4.2.4 Requisição: Alterar médico ou paciente
+    [PUT]/user/{id}
 ```json
 {
-    
+    "username": "ramon.venson",
+    "email": "ramon.venson@satc.edu.br",
+    "password": "godot_java",
+    "fullName": "Ramon Venson",
+    "birthDate": "1970-11-25"
+    "type": 1
 }
 ```
 
-### 4.6.1 Requisição: Remover paciente
-    [DELETE]/paciente/{id-paciente}
+### 4.2.5 Requisição: Remover médico ou paciente
+    [DELETE]/user/{id}
+    
+
+## 4.3 Controle de disponibilidade dos médicos
+Endpoints:
+* [POST] Inserir disponibilidade de médico
+* [GET] Listar disponibilidade de médico
+* [DELETE] Deletar disponibilidade de médico
+
+### 4.3.1 Requisição: Inserir disponibilidade de médico
+    [POST]/disponibilidade
+```json
+{
+    "IDmedico": 1,
+    "diaSemana": 1,
+    "horário": "13:30",
+    "idDiaSemanaHorario": 1
+}
+```
+    
+### 4.3.2 Requisição: Listar disponibilidade de médico
+    [GET]/disponibilidade/{id-medico}
+parametros
+```
+page int
+count int
+sort list<string> //nome campo
+filter map<string, string> //nome campo : valor
+```
+    
+### 4.3.3 Requisição: Deletar disponibilidade de médico
+    [DELETE]/disponibilidade/{id}
+
+## 4.4 Controle de Consultas para Paciente
+Endpoints:
+* [POST] Agendar consulta
+* [GET] Listar consultas
+* [GET] Listar uma consulta
+* [POST] Confirmar consulta (medico pediu para confirmar ultima chance de cancelar, não é apenas um lembrete)
+* [POST] Confirmar alteracao de consulta (medico quer alterar data/hora ou cancelou)
+* [PATCH] Alterar data/horario da consulta
+* [DELETE] Cancelar consulta
+
+### 4.4.1 Requisição: Agendar consulta
+    [POST]/consulta/{id-medico}
+```json
+{
+    "patientId": 1,
+    "availabilityId": 1,
+    "local": "São João Batista"
+}
+```
+
+### 4.4.2 Requisição: Listar consultas
+    [GET]/paciente/consulta
+parametros:
+```
+page int
+count int
+sort list<string> //nome campo
+filter map<string, string> //nome campo : valor
+```
+
+
+### 4.4.3 Requisição: Alterar data/horario da consulta
+    [PATCH]/consulta/{id-consulta}
+```json
+{
+    "availabilityId": 2
+}
+```
+
+### 4.4.4 Requisição: Cancelar consulta
+    [DELETE]/consulta/{id-consulta}
+
+## 4.5 Controle de prescrições
+Endpoints:
+* [POST] Inserir nova prescrição
+* [GET] Listar todos as prescrições
+* [GET] Listar uma prescrição
+* [PATCH] Alterar Dados de uma prescrição (data, hora, quantidade)
+* [DELETE] Remover uma prescrição
+  
+### 4.5.1 Requisição: Inserir prescrição (médico)
+[POST]/medico/{id-paciente}/medicamento
+```json
+{
+    "doctorId": 1,
+    "medicineId": 1,
+    "timeBetweenIntakes": 6,
+    "amountToTake": 1
+}
+```
+
+### 4.5.2 Requisição: Ler prescrições (médico)
+    [GET]/medico{id-paciente}/medicamento?   
+Parametros:
+```
+page int
+count int
+sort list<string> //nome campo
+filter map<string, string> //nome campo : valor
+```
+
+### 4.5.3 Requisição: Ler uma prescrição (médico)
+    [GET]/medico/{id-paciente}/medicamento/{id-prescricao}
+
+### 4.5.4 Requisição: Alterar uma prescrição (médico)
+    [PATCH]/medico/{id-paciente}/medicamento/{id-prescricao}
+```json
+{
+    "medicineId": 1,
+    "timeBetweenIntakes": 6,
+    "amountToTake": 1
+}
+```
+
+### 4.5.5 Requisição: Parar uma prescrição (médico)
+    [PATCH]/medico/{id-paciente}/medicamento/{id-prescricao}/parar
+
+
+### 4.5.6 Requisição: Remover uma prescrição (médico)
+    [DELETE]/medico/{id-paciente}/medicamento/{id-prescricao}
+
+
