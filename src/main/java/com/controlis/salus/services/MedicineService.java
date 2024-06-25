@@ -1,6 +1,7 @@
 package com.controlis.salus.services;
 
-import com.controlis.salus.dto.MedicineDTO;
+import com.controlis.salus.dtos.MedicineInsertDto;
+import com.controlis.salus.dtos.MedicineReturnDto;
 import com.controlis.salus.models.Medicine;
 import com.controlis.salus.repositories.MedicineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,49 +18,33 @@ public class MedicineService {
     @Autowired
     private MedicineRepository medicineRepository;
 
-    public List<MedicineDTO> getAllMedicines(int page, int count) {
+    public List<MedicineReturnDto> getAllMedicines(int page, int count) {
         Pageable pageable = PageRequest.of(page, count);
         return medicineRepository.findAll(pageable).stream()
-                .map(this::convertEntityToDTO)
+                .map(Medicine::convertEntityToDto)
                 .collect(Collectors.toList());
     }
 
-    public MedicineDTO getMedicineById(Integer id) {
+    public MedicineReturnDto getMedicineById(Integer id) {
         return medicineRepository.findById(id)
-                .map(this::convertEntityToDTO)
+                .map(Medicine::convertEntityToDto)
                 .orElse(null);
     }
 
-    public MedicineDTO saveMedicine(MedicineDTO medicineDTO) {
-        Medicine medicine = convertDTOToEntity(medicineDTO);
+    public MedicineReturnDto saveMedicine(MedicineInsertDto dto) {
+        Medicine medicine = Medicine.convertDtoToEntity(dto);
         medicine = medicineRepository.save(medicine);
-        return convertEntityToDTO(medicine);
+        return Medicine.convertEntityToDto(medicine);
     }
 
-    public MedicineDTO updateMedicine(Integer id, MedicineDTO medicineDTO) {
-        Medicine medicine = convertDTOToEntity(medicineDTO);
+    public MedicineReturnDto updateMedicine(Integer id, MedicineInsertDto dto) {
+        Medicine medicine = Medicine.convertDtoToEntity(dto);
         medicine.setId(id);
         medicine = medicineRepository.save(medicine);
-        return convertEntityToDTO(medicine);
+        return Medicine.convertEntityToDto(medicine);
     }
 
     public void deleteMedicine(Integer id) {
         medicineRepository.deleteById(id);
-    }
-
-    private MedicineDTO convertEntityToDTO(Medicine medicine) {
-        return MedicineDTO.builder()
-                .id(medicine.getId())
-                .userId(medicine.getUserId())
-                .name(medicine.getName())
-                .build();
-    }
-
-    private Medicine convertDTOToEntity(MedicineDTO medicineDTO) {
-        return Medicine.builder()
-                .id(medicineDTO.getId())
-                .userId(medicineDTO.getUserId())
-                .name(medicineDTO.getName())
-                .build();
     }
 }

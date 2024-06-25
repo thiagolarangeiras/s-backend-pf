@@ -1,6 +1,7 @@
 package com.controlis.salus.controllers;
 
-import com.controlis.salus.dto.MedicineDTO;
+import com.controlis.salus.dtos.MedicineInsertDto;
+import com.controlis.salus.dtos.MedicineReturnDto;
 import com.controlis.salus.services.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,30 +17,30 @@ public class MedicineController {
     private MedicineService medicineService;
 
     @PostMapping
-    public ResponseEntity<MedicineDTO> createMedicine(@RequestBody MedicineDTO medicineDTO) {
-        return ResponseEntity.ok(medicineService.saveMedicine(medicineDTO));
+    public ResponseEntity<MedicineReturnDto> createMedicine(@RequestBody MedicineInsertDto dto) {
+        return ResponseEntity.ok(medicineService.saveMedicine(dto));
     }
 
     @GetMapping
-    public ResponseEntity<List<MedicineDTO>> getAllMedicines(
+    public ResponseEntity<List<MedicineReturnDto>> getAllMedicines(
             @RequestParam int page,
             @RequestParam int count) {
         return ResponseEntity.ok(medicineService.getAllMedicines(page, count));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MedicineDTO> getMedicineById(@PathVariable Integer id) {
+    public ResponseEntity<MedicineReturnDto> getMedicineById(@PathVariable Integer id) {
         return ResponseEntity.ok(medicineService.getMedicineById(id));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<MedicineDTO> updateMedicine(
-            @PathVariable Integer id, @RequestBody MedicineDTO medicineDTO) {
-        return ResponseEntity.ok(medicineService.updateMedicine(id, medicineDTO));
+    public ResponseEntity<MedicineReturnDto> updateMedicine(
+            @PathVariable Integer id, @RequestBody MedicineInsertDto dto) {
+        return ResponseEntity.ok(medicineService.updateMedicine(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMedicine(@PathVariable Integer id) {
+    public ResponseEntity<MedicineReturnDto> deleteMedicine(@PathVariable Integer id) {
         medicineService.deleteMedicine(id);
         return ResponseEntity.noContent().build();
     }
