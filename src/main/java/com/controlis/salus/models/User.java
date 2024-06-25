@@ -1,5 +1,7 @@
 package com.controlis.salus.models;
 
+import com.controlis.salus.dtos.UserInsertDto;
+import com.controlis.salus.dtos.UserReturnDto;
 import com.controlis.salus.models.enums.UserType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,11 +11,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -42,4 +42,27 @@ public class User implements UserDetails {
         return roles.stream().map((role -> new SimpleGrantedAuthority(role))).toList();
     }
 
+    //Mappers
+    public static UserReturnDto convertEntityToDto(User user) {
+        return new UserReturnDto(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getCompleteName(),
+                user.getBirthDate(),
+                user.getType()
+        );
+    }
+
+    public static User convertDtoToEntity(UserInsertDto dto) {
+        return User.builder()
+                .username(dto.username())
+                .email(dto.email())
+                .password(new BCryptPasswordEncoder().encode(dto.password()))
+                .completeName(dto.completeName())
+                .birthDate(dto.birthDate())
+                .type(dto.type())
+                .roles(new HashSet<String>())
+                .build();
+    }
 }

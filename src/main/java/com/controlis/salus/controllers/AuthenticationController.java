@@ -3,12 +3,11 @@ package com.controlis.salus.controllers;
 import com.controlis.salus.dtos.LoginRequestDto;
 import com.controlis.salus.dtos.UserInsertDto;
 import com.controlis.salus.dtos.UserReturnDto;
+import com.controlis.salus.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import com.controlis.salus.services.AuthenticationService;
 
 record LoginResponseDto(
         String token
@@ -18,7 +17,7 @@ record LoginResponseDto(
 @RequestMapping("/auth")
 public class AuthenticationController {
     @Autowired
-    AuthenticationService authenticationService;
+    UserService authenticationService;
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
@@ -29,6 +28,6 @@ public class AuthenticationController {
     @PostMapping("/signin")
     @ResponseStatus(HttpStatus.CREATED)
     public UserReturnDto register(@RequestBody @Valid UserInsertDto dto) {
-        return authenticationService.register(dto);
+        return authenticationService.saveUser(dto);
     }
 }

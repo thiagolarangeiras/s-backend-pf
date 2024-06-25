@@ -1,7 +1,8 @@
-package com.controlis.salus.controller;
+package com.controlis.salus.controllers;
 
-import com.controlis.salus.dto.UserDTO;
-import com.controlis.salus.service.UserService;
+import com.controlis.salus.dtos.UserInsertDto;
+import com.controlis.salus.dtos.UserReturnDto;
+import com.controlis.salus.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,45 +10,39 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping()
 public class UserController {
-
     @Autowired
     private UserService userService;
 
-    @PostMapping("/signin")
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
-        return ResponseEntity.ok(userService.saveUser(userDTO));
-    }
-
     @GetMapping("/medico")
-    public ResponseEntity<List<UserDTO>> getAllMedicos(
+    public ResponseEntity<List<UserReturnDto>> getAllMedicos(
             @RequestParam int page,
             @RequestParam int count) {
         return ResponseEntity.ok(userService.getAllMedicos(page, count));
     }
 
     @GetMapping("/paciente")
-    public ResponseEntity<List<UserDTO>> getAllPacientes(
+    public ResponseEntity<List<UserReturnDto>> getAllPacientes(
             @RequestParam int page,
             @RequestParam int count) {
         return ResponseEntity.ok(userService.getAllPacientes(page, count));
     }
 
     @GetMapping("/usuario/{id}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable Integer id) {
+    public ResponseEntity<UserReturnDto> getUserById(@PathVariable Integer id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
     @PutMapping("/usuario/{id}")
-    public ResponseEntity<UserDTO> updateUser(
-            @PathVariable Integer id, @RequestBody UserDTO userDTO) {
-        return ResponseEntity.ok(userService.updateUser(id, userDTO));
+    public ResponseEntity<UserReturnDto> updateUser(
+            @PathVariable Integer id, @RequestBody UserInsertDto dto) {
+        return ResponseEntity.ok(userService.updateUser(id, dto));
     }
 
     @DeleteMapping("/usuario/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
+    public ResponseEntity<Integer> deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(id);
     }
 }

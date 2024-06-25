@@ -1,7 +1,7 @@
-package com.controlis.salus.controller;
+package com.controlis.salus.controllers;
 
 import com.controlis.salus.dto.MedicineDTO;
-import com.controlis.salus.service.MedicineService;
+import com.controlis.salus.services.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/medicamento")
+@RequestMapping("/medicamento")
 public class MedicineController {
 
     @Autowired

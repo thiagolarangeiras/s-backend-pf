@@ -1,8 +1,8 @@
-package com.controlis.salus.service;
+package com.controlis.salus.services;
 
 import com.controlis.salus.dto.MedicineDTO;
 import com.controlis.salus.models.Medicine;
-import com.controlis.salus.repository.MedicineRepository;
+import com.controlis.salus.repositories.MedicineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
