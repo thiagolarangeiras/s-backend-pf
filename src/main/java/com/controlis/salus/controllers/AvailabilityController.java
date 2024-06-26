@@ -17,12 +17,12 @@ public class AvailabilityController {
     private AvailabilityService availabilityService;
 
     @PostMapping
-    public ResponseEntity<AvailabilityReturnDto> createMedicine(@RequestBody AvailabilityInsertDto dto) {
+    public ResponseEntity<AvailabilityReturnDto> createAvailability(@RequestBody AvailabilityInsertDto dto) {
         return ResponseEntity.ok(availabilityService.save(dto));
     }
 
     @GetMapping("{id-medico}")
-    public ResponseEntity<List<AvailabilityReturnDto>> getAllMedicines(
+    public ResponseEntity<List<AvailabilityReturnDto>> getAllAvailabilitys(
             @PathVariable("id-medico") Integer medicId,
             @RequestParam int page,
             @RequestParam int count) {
@@ -30,7 +30,7 @@ public class AvailabilityController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<AvailabilityReturnDto> deleteMedicine(@PathVariable Integer id) {
+    public ResponseEntity<AvailabilityReturnDto> deleteAvailability(@PathVariable Integer id) {
         availabilityService.delete(id);
         return ResponseEntity.noContent().build();
     }
