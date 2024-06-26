@@ -62,6 +62,10 @@ Se o medicamento não tiver fim definido ou não acabou ainda marcar como desati
 
 # 3 Tecnologias
 
+* Java
+* SpringBoot
+* PostgreSQL
+
 # 4 Detalhamento da API
 
 
