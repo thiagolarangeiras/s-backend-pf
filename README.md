@@ -266,7 +266,7 @@ Endpoints:
 ```
 
 ### 4.5.2 Requisição: Ler prescrições (médico)
-    [GET]/prescricao?   
+    [GET]/prescricao/paciente/{id-paciente}?   
 Parametros:
 ```
 page int
