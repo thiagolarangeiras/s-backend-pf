@@ -250,22 +250,23 @@ Endpoints:
 * [POST] Inserir nova prescrição
 * [GET] Listar todos as prescrições
 * [GET] Listar uma prescrição
-* [PATCH] Alterar Dados de uma prescrição (data, hora, quantidade)
+* [PUT] Alterar Dados de uma prescrição (data, hora, quantidade)
 * [DELETE] Remover uma prescrição
   
 ### 4.5.1 Requisição: Inserir prescrição (médico)
-[POST]/medico/{id-paciente}/medicamento
+[POST]/prescricao
 ```json
 {
+    "patientId": 1,        
     "doctorId": 1,
     "medicineId": 1,
-    "timeBetweenIntakes": 6,
+    "timeBetweenIntakes": "06:00:00",
     "amountToTake": 1
 }
 ```
 
 ### 4.5.2 Requisição: Ler prescrições (médico)
-    [GET]/medico{id-paciente}/medicamento?   
+    [GET]/prescricao?   
 Parametros:
 ```
 page int
@@ -275,23 +276,21 @@ filter map<string, string> //nome campo : valor
 ```
 
 ### 4.5.3 Requisição: Ler uma prescrição (médico)
-    [GET]/medico/{id-paciente}/medicamento/{id-prescricao}
+    [GET]/prescricao/{id-prescricao}
 
 ### 4.5.4 Requisição: Alterar uma prescrição (médico)
-    [PATCH]/medico/{id-paciente}/medicamento/{id-prescricao}
+    [PUT]/prescricao/{id-prescricao}
 ```json
 {
+     "patientId": 1,        
+    "doctorId": 1,
     "medicineId": 1,
-    "timeBetweenIntakes": 6,
+    "timeBetweenIntakes": "06:00:00",
     "amountToTake": 1
 }
 ```
 
-### 4.5.5 Requisição: Parar uma prescrição (médico)
-    [PATCH]/medico/{id-paciente}/medicamento/{id-prescricao}/parar
-
-
-### 4.5.6 Requisição: Remover uma prescrição (médico)
-    [DELETE]/medico/{id-paciente}/medicamento/{id-prescricao}
+### 4.5.5 Requisição: Remover uma prescrição (médico)
+    [DELETE]/prescricao/{id-prescricao}
 
 
