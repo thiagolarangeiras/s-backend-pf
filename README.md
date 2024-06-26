@@ -4,7 +4,7 @@
     Saúde e Bem-estar: Gerenciamento de Medicamentos, Mapeamento de Atendimentos Médicos, Recomendações Médicas
 
 # 1 Funcionalidades Gerais:
-O que o sistema ira ter em uma visão geral de funcionalidades
+O que o sistema irá ter em uma visão geral de funcionalidades
 
 ## 1.1 Gerenciamento de Medicamentos:
 * Lembretes para tomar medicamentos
@@ -28,17 +28,8 @@ Funcionalidades e ações que cada papel pode fazer ou receber
 ## 2.1 Ações do paciente
 ### 2.1.1 Ações
 * Cadastrar medicamentos
-* Marcar quando tomou o remédio
 * Marcar consulta com médico
 * Marcar exame
-### 2.1.1 receber
-* Notificação de quando tomar o remédio
-* Se o remédio tem alguma contra indicação
-* Se o remédio causa alguma reação com outro remédio
-* Lembrete de consulta 
-* Indicação envida pelo médico
-* Resultado da consulta
-* Resultado do exame
 
 ## 2.2 Ações do médico
 ### 2.1.1 Ações
@@ -46,10 +37,6 @@ Funcionalidades e ações que cada papel pode fazer ou receber
 * Criar um resultado da consulta 
 * Marcar um exame para paciente
 * Criar resultado para exame (arquivos, laudos, etc..)
-### 2.1.1 receber
-* Lembrete de consulta
-* Verificar quais remédios o paciente tomou
-* Verificar resultado de exames
 
 ## 2.3 Ações da administração/hospital
 ### 2.1.1 Ações
@@ -112,15 +99,15 @@ filter map<string, string>
 ## 4.2 Controle de cadastro de médicos e pacientes
 Endpoints:
 * [POST] Inserir médico ou paciente
+* [POST] Login de médico ou paciente
 * [GET] Listar médicos
 * [GET] Listar pacientes
-* [GET] Listar um médico
-* [GET] Listar um paciente
+* [GET] Listar um médico ou paciente
 * [PUT] Alterar médico ou paciente
 * [DELETE] Remover médico ou paciente
 
 ### 4.2.1 Requisição: Inserir médico ou paciente
-    [POST]/signin
+    [POST]/auth/signin
 ```json
 {
     "username": "ramon.venson",
@@ -131,7 +118,16 @@ Endpoints:
     "type": 0
 }
 ```
-### 4.2.2 Requisição: Listar médicos 
+### 4.2.2 Requisição: Inserir médico ou paciente
+    [POST]/auth/login
+```json
+{
+    "username": "ramon.venson",
+    "password": "godot_java",
+}
+```
+
+### 4.2.3 Requisição: Listar médicos 
     [GET]/medico
 parametros
 ```
@@ -141,7 +137,7 @@ sort list<string> //nome campo
 filter map<string, string> //nome campo : valor
 ```
 
-### 4.2.3 Requisição: Listar pacientes 
+### 4.2.4 Requisição: Listar pacientes 
     [GET]/paciente
 parametros
 ```
@@ -151,8 +147,11 @@ sort list<string> //nome campo
 filter map<string, string> //nome campo : valor
 ```
 
-### 4.2.4 Requisição: Alterar médico ou paciente
-    [PUT]/user/{id}
+### 4.2.5 Requisição: Listar médico ou paciente 
+    [GET]/usuario/{id}
+
+### 4.2.6 Requisição: Alterar médico ou paciente
+    [PUT]/usuario/{id}
 ```json
 {
     "username": "ramon.venson",
@@ -164,7 +163,7 @@ filter map<string, string> //nome campo : valor
 }
 ```
 
-### 4.2.5 Requisição: Remover médico ou paciente
+### 4.2.7 Requisição: Remover médico ou paciente
     [DELETE]/user/{id}
     
 
