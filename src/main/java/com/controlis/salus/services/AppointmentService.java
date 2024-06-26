@@ -2,6 +2,7 @@ package com.controlis.salus.services;
 
 import com.controlis.salus.dtos.AppointmentInsertDto;
 import com.controlis.salus.dtos.AppointmentReturnDto;
+import com.controlis.salus.dtos.AppointmentUpdateDto;
 import com.controlis.salus.models.Appointment;
 import com.controlis.salus.repositories.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class AppointmentService {
 
     public List<AppointmentReturnDto> getAllDoctor (int page, int count, Integer doctorId) {
         Pageable pageable = PageRequest.of(page, count);
-        return AppointmentRepository.findAllByDoctorId(doctorId, pageable)
+        return AppointmentRepository.findByDoctorId(doctorId, pageable)
                 .stream()
                 .map(Appointment::convertEntityToDto)
                 .collect(Collectors.toList());
@@ -28,26 +29,27 @@ public class AppointmentService {
 
     public List<AppointmentReturnDto> getAllPatient (int page, int count, Integer patientId) {
         Pageable pageable = PageRequest.of(page, count);
-        return AppointmentRepository.findAllByPatientId(patientId, pageable)
+        return AppointmentRepository.findByPatientId(patientId, pageable)
                 .stream()
                 .map(Appointment::convertEntityToDto)
                 .collect(Collectors.toList());
     }
 
-    public AppointmentReturnDto saveAppointment(AppointmentInsertDto dto) {
-        Appointment Appointment = Appointment.convertDtoToEntity(dto);
-        Appointment = AppointmentRepository.save(Appointment);
-        return Appointment.convertEntityToDto(Appointment);
+    public AppointmentReturnDto save(AppointmentInsertDto dto, Integer doctorId) {
+        Appointment appointment = Appointment.convertDtoToEntity(dto);
+        appointment.setDoctorId(doctorId);
+        appointment = AppointmentRepository.save(appointment);
+        return Appointment.convertEntityToDto(appointment);
     }
 
-    public AppointmentReturnDto updateAppointment(Integer id, AppointmentUpdateDto dto) {
-        Appointment Appointment = AppointmentRepository.findById(id).orElseThrow();
-        Appointment.updateEntityFromDto(dto);
-        Appointment = AppointmentRepository.save(Appointment);
-        return Appointment.convertEntityToDto(Appointment);
+    public AppointmentReturnDto update(Integer id, AppointmentUpdateDto dto) {
+        Appointment appointment = AppointmentRepository.findById(id).orElseThrow();
+        Appointment.updateEntityFromDto(appointment, dto);
+        appointment = AppointmentRepository.save(appointment);
+        return Appointment.convertEntityToDto(appointment);
     }
 
-    public void deleteAppointment(Integer id) {
+    public void delete(Integer id) {
         AppointmentRepository.deleteById(id);
     }
 }

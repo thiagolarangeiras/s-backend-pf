@@ -1,5 +1,8 @@
 package com.controlis.salus.models;
 
+import com.controlis.salus.dtos.AppointmentInsertDto;
+import com.controlis.salus.dtos.AppointmentReturnDto;
+import com.controlis.salus.dtos.AppointmentUpdateDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,11 +29,11 @@ public class Appointment {
     //Mappers
     public static AppointmentReturnDto convertEntityToDto(Appointment appointment) {
         return new AppointmentReturnDto(
-        appointment.getId(), 
-        appointment.getDoctorId(),
-        appointment.getPatientId(),
-        appointment.getAvailabilityId(),
-        appointment.getLocal()
+            appointment.getId(),
+            appointment.getDoctorId(),
+            appointment.getPatientId(),
+            appointment.getAvailabilityId(),
+            appointment.getLocal()
         );
     }
 

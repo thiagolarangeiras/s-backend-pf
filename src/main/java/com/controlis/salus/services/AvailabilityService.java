@@ -26,6 +26,13 @@ public class AvailabilityService {
 
     public AvailabilityReturnDto save(AvailabilityInsertDto dto) {
         Availability availability = Availability.convertDtoToEntity(dto);
+        int maxAutoIncrementField = availabilityRepository.findAll()
+                .stream()
+                .mapToInt(Availability::getWeekDayTimeId)
+                .max()
+                .orElse(0);
+
+        availability.setWeekDayTimeId(maxAutoIncrementField + 1);
         availability = availabilityRepository.save(availability);
         return Availability.convertEntityToDto(availability);
     }

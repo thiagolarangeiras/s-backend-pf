@@ -7,6 +7,4 @@ public record AppointmentInsertDto(
     Integer patientId,
     Integer availabilityId,
     String local
-) {
-
-}
+) { }

@@ -4,11 +4,9 @@ import lombok.Builder;
 
 @Builder
 public record AppointmentReturnDto(
-    Integer id;
-    Integer doctorId;
-    Integer patientId;
-    Integer availabilityId;
-    String local;
-) {
-
-}
+    Integer id,
+    Integer doctorId,
+    Integer patientId,
+    Integer availabilityId,
+    String local
+) { }

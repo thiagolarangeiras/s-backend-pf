@@ -2,6 +2,7 @@ package com.controlis.salus.controllers;
 
 import com.controlis.salus.dtos.AppointmentInsertDto;
 import com.controlis.salus.dtos.AppointmentReturnDto;
+import com.controlis.salus.dtos.AppointmentUpdateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,16 +24,16 @@ public class AppointmentController{
         return ResponseEntity.ok(AppointmentService.save(dto, doctorId));
     }
 
-    @GetMapping("/{id-paciente}")// Listar consultas por paciente
-    public ResponseEntity<List<AppointmentReturnDto>> getAllAppointments(
+    @GetMapping("paciente/{id-paciente}")// Listar consultas por paciente
+    public ResponseEntity<List<AppointmentReturnDto>> getAllAppointmentsPatient(
             @PathVariable("id-paciente") Integer patientId,
             @RequestParam int page,
             @RequestParam int count) {
         return ResponseEntity.ok(AppointmentService.getAllPatient(page, count, patientId));
     }
 
-    @GetMapping("/{id-medico}") // Listar consulta por médico
-    public ResponseEntity<List<AppointmentReturnDto>> getAllAppointments(
+    @GetMapping("medico/{id-medico}") // Listar consulta por médico
+    public ResponseEntity<List<AppointmentReturnDto>> getAllAppointmentsMedic(
             @PathVariable("id-medico") Integer doctorId,
             @RequestParam int page,
             @RequestParam int count) {

@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "availabilitys")
@@ -40,10 +41,12 @@ public class Availability {
     }
 
     public static Availability convertDtoToEntity(AvailabilityInsertDto dto) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(dto.dateTime(), formatter);
         return Availability.builder()
                 .medicId(dto.medicId())
                 .weekDay(dto.weekDay())
-                .dateTime(dto.dateTime())
+                .dateTime(dateTime)
                 .build();
     }
 }

@@ -9,5 +9,5 @@ import java.time.LocalDateTime;
 public record AvailabilityInsertDto(
         Integer medicId,
         WeekDay weekDay,
-        LocalDateTime dateTime
+        String dateTime
 ) { }
