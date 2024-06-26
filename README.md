@@ -199,8 +199,6 @@ Endpoints:
 * [POST] Agendar consulta
 * [GET] Listar consultas
 * [GET] Listar uma consulta
-* [POST] Confirmar consulta (medico pediu para confirmar ultima chance de cancelar, não é apenas um lembrete)
-* [POST] Confirmar alteracao de consulta (medico quer alterar data/hora ou cancelou)
 * [PATCH] Alterar data/horario da consulta
 * [DELETE] Cancelar consulta
 
