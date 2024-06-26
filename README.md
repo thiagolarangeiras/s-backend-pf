@@ -174,7 +174,7 @@ Endpoints:
     [POST]/disponibilidade
 ```json
 {
-    "IDmedico": 1,
+    "medicId": 1,
     "diaSemana": 1,
     "horário": "13:30",
     "idDiaSemanaHorario": 1
@@ -215,7 +215,7 @@ Endpoints:
 ```
 
 ### 4.4.2 Requisição: Listar consultas
-    [GET]/paciente/consulta
+    [GET]/consulta/{id-paciente}
 parametros:
 ```
 page int
