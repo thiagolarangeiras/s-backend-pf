@@ -174,7 +174,7 @@ Endpoints:
     [POST]/disponibilidade
 ```json
 {
-    "IDmedico": 1,
+    "medicId": 1,
     "diaSemana": 1,
     "horário": "13:30",
     "idDiaSemanaHorario": 1
@@ -214,8 +214,8 @@ Endpoints:
 }
 ```
 
-### 4.4.2 Requisição: Listar consultas
-    [GET]/paciente/consulta
+### 4.4.2 Requisição: Listar consultas por paciente
+    [GET]/consulta/{id-paciente}
 parametros:
 ```
 page int
@@ -224,8 +224,17 @@ sort list<string> //nome campo
 filter map<string, string> //nome campo : valor
 ```
 
+### 4.4.2 Requisição: Listar consultas por médico
+    [GET]/consulta/{id-medico}
+parametros:
+```
+page int
+count int
+sort list<string> //nome campo
+filter map<string, string> //nome campo : valor
+```
 
-### 4.4.3 Requisição: Alterar data/horario da consulta
+### 4.4.4 Requisição: Alterar data/horario da consulta
     [PATCH]/consulta/{id-consulta}
 ```json
 {
@@ -233,7 +242,7 @@ filter map<string, string> //nome campo : valor
 }
 ```
 
-### 4.4.4 Requisição: Cancelar consulta
+### 4.4.5 Requisição: Cancelar consulta
     [DELETE]/consulta/{id-consulta}
 
 ## 4.5 Controle de prescrições
