@@ -1,11 +1,12 @@
-FROM eclipse-temurin:21-jdk-alpine AS build
+FROM openjdk:21-slim AS build 
+USER root
 WORKDIR /app
 COPY . .
-RUN ./gradlew clean bootJar
+RUN ./gradle clean build 
 
 FROM openjdk:21-slim
 WORKDIR /app
-COPY --from=build app/build/libs/*.jar api.jar
+COPY --from=build app/build/libs/saluscontrolis-1.jar api.jar
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "api.jar"]
