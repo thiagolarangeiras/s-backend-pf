@@ -1,0 +1,823 @@
+{
+	"info": {
+		"_postman_id": "43ce00e3-1d66-49e6-b69d-b6605ab0a4bf",
+		"name": "satc-backend-projeto-final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26808341"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"thiago\",\r\n    \"password\": \"thiago\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PATH}}/auth/login",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"thiago\" ,\r\n    \"email\": \"thiago\",\r\n    \"password\": \"thiago\",\r\n    \"completeName\": \"teste teste\",\r\n    \"birthDate\": \"2022-01-01\",\r\n    \"type\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PATH}}/auth/signin",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "medico todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/medico?page=0&count=100",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"medico"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "count",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "paciente todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/paciente?page=0&count=100",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"paciente"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "count",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user unico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/usuario/:id",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"usuario",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"medico\" ,\r\n    \"email\": \"medico\",\r\n    \"password\": \"medico\",\r\n    \"completeName\": \"medico\",\r\n    \"birthDate\": \"2022-01-01\",\r\n    \"type\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PATH}}/usuario/:id",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"usuario",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"medico\" ,\r\n    \"email\": \"medico\",\r\n    \"password\": \"medico\",\r\n    \"completeName\": \"medico\",\r\n    \"birthDate\": \"2022-01-01\",\r\n    \"type\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PATH}}/usuario/:id",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"usuario",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medicamento",
+			"item": [
+				{
+					"name": "medicamento todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/medicamento?page=0&count=100",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"medicamento"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "count",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "medimaneto id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/medicamento/:id",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"medicamento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "medicamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Dipirona Monohidratada 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PATH}}/medicamento",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"medicamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "medicamento",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PATH}}/medicamento/:id",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"medicamento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "medicamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/medicamento/:id",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"medicamento",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "disponibilidade",
+			"item": [
+				{
+					"name": "disponibilidade",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"medicId\": 1,\r\n    \"weekDay\": 1,\r\n    \"dateTime\": \"2022-02-02 10:10:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PATH}}/disponibilidade",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"disponibilidade"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "disponibilidade",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/disponibilidade/:id-medico?page=0&count=100",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"disponibilidade",
+								":id-medico"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "count",
+									"value": "100"
+								}
+							],
+							"variable": [
+								{
+									"key": "id-medico",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "disponibilidade",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/disponibilidade/:id",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"disponibilidade",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "consulta",
+			"item": [
+				{
+					"name": "consulta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patientId\": 1,\r\n    \"availabilityId\": 1,\r\n    \"local\": \"teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PATH}}/consulta/:id-medico",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"consulta",
+								":id-medico"
+							],
+							"variable": [
+								{
+									"key": "id-medico",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consulta paciente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/consulta/paciente/:id-paciente?page=0&count=100",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"consulta",
+								"paciente",
+								":id-paciente"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "count",
+									"value": "100"
+								}
+							],
+							"variable": [
+								{
+									"key": "id-paciente",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consulta medico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/consulta/medico/:id-medico?page=0&count=100",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"consulta",
+								"medico",
+								":id-medico"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "count",
+									"value": "100"
+								}
+							],
+							"variable": [
+								{
+									"key": "id-medico",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consulta",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"availabilityId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PATH}}/consulta/:id",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"consulta",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consulta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/consulta/:id",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"consulta",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "prescricao",
+			"item": [
+				{
+					"name": "prescricao",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patientId\": 1,\r\n    \"doctorId\": 1,\r\n    \"medicineId\": 1,\r\n    \"timeBetweenIntakes\": \"06:00:00\",\r\n    \"amountToTake\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PATH}}/prescricao",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"prescricao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "prescricao",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/prescricao/:id",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"prescricao",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "prescricao all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/prescricao/paciente/:id-paciente?page=0&count=100",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"prescricao",
+								"paciente",
+								":id-paciente"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "count",
+									"value": "100"
+								}
+							],
+							"variable": [
+								{
+									"key": "id-paciente",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "prescricao",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patientId\": 1,\r\n    \"doctorId\": 2,\r\n    \"medicineId\": 1,\r\n    \"timeBetweenIntakes\": \"06:00:00\",\r\n    \"amountToTake\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PATH}}/prescricao/:id",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"prescricao",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "prescricao",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{PATH}}/prescricao/:id",
+							"host": [
+								"{{PATH}}"
+							],
+							"path": [
+								"prescricao",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ajuda",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{PATH}}/ajuda",
+					"host": [
+						"{{PATH}}"
+					],
+					"path": [
+						"ajuda"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "PATH",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
